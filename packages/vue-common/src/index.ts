@@ -31,15 +31,15 @@ export const $props = {
   'tiny_chart_theme': Object
 }
 
-export const props = [
-  'tiny_mode',
-  'tiny_mode_root',
-  'tiny_template',
-  'tiny_renderless',
-  '_constants',
-  'tiny_theme',
-  'tiny_chart_theme'
-]
+export const props: Array<
+  | 'tiny_mode'
+  | 'tiny_mode_root'
+  | 'tiny_template'
+  | 'tiny_renderless'
+  | '_constants'
+  | 'tiny_theme'
+  | 'tiny_chart_theme'
+> = ['tiny_mode', 'tiny_mode_root', 'tiny_template', 'tiny_renderless', '_constants', 'tiny_theme', 'tiny_chart_theme']
 
 export const resolveMode = (props, context) => {
   let isRightMode = (mode) => ~['pc', 'mobile', 'mobile-first'].indexOf(mode)
@@ -235,7 +235,11 @@ export const svg = ({ name = 'Icon', component }) => {
 
           // 解决富文本组件工具栏图标大小不正确的问题
           if (name.indexOf('IconRichText') !== -1) {
-            extend.viewBox = '0 0 24 24'
+            if (!isVue3) {
+              extend.attrs.viewBox = '0 0 24 24'
+            } else {
+              extend.viewBox = '0 0 24 24'
+            }
           }
 
           return renderComponent({

@@ -7,6 +7,11 @@
       "pc"
     ]
   },
+  "ActionMenuPc": {
+    "path": "vue/src/action-menu/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "ActionSheet": {
     "path": "vue/src/action-sheet/index.ts",
     "type": "component",
@@ -67,6 +72,11 @@
       "pc"
     ]
   },
+  "AnchorPc": {
+    "path": "vue/src/anchor/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Area": {
     "path": "vue/src/area/index.ts",
     "type": "component",
@@ -74,6 +84,19 @@
     "mode": [
       "pc"
     ]
+  },
+  "AsyncFlowchart": {
+    "path": "vue/src/async-flowchart/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
+  },
+  "AsyncFlowchartMobileFirst": {
+    "path": "vue/src/async-flowchart/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
   },
   "Autocomplete": {
     "path": "vue/src/autocomplete/index.ts",
@@ -231,6 +254,25 @@
   },
   "CalendarPc": {
     "path": "vue/src/calendar/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CalendarView": {
+    "path": "vue/src/calendar-view/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "CalendarViewMobileFirst": {
+    "path": "vue/src/calendar-view/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CalendarViewPc": {
+    "path": "vue/src/calendar-view/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -618,6 +660,19 @@
   },
   "ColorPickerPc": {
     "path": "vue/src/color-picker/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "ColorSelectPanel": {
+    "path": "vue/src/color-select-panel/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ColorSelectPanelPc": {
+    "path": "vue/src/color-select-panel/src/pc.vue",
     "type": "template",
     "exclude": false
   },

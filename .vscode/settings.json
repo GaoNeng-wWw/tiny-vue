@@ -81,5 +81,7 @@
       "bold": false,
       "italic": false
     }
-  ]
+  ],
+  "vue.codeActions.enabled": false,
+  "git.ignoreLimitWarning": true
 }
