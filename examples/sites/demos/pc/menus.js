@@ -174,7 +174,8 @@ export const cmpMenus = [
         'meta': {
           'experimental': '3.17.0'
         }
-      }
+      },
+      { 'nameCn': '流程设计器', name: 'ProcessDesigner', key: 'process-designer' }
     ]
   },
   {
