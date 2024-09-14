@@ -15,8 +15,9 @@
     "vitest": "^0.31.0"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~"
+    "@opentiny/tiny-bpmn": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
   },
   "license": "MIT"
 }

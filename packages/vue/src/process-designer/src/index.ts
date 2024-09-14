@@ -14,6 +14,6 @@ export default defineComponent({
     modelValue: String
   },
   setup(props, context) {
-    return $setup({ props, context, template: PCTemplate })
+    return $setup({ props, context, template: () => PCTemplate })
   }
 })
