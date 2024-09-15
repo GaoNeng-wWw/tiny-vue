@@ -17,7 +17,6 @@ export const useBPMN = (options: useBPMNOptions) => {
   const modeler = of<Modeler, typeof Modeler>(modelerClazz, options)
   const { getData } = options
   const canvas = modeler.get<Canvas>('canvas')
-  let done = false
   if (getData) {
     getData()
       .then((content) => {
