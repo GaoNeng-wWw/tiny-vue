@@ -9,13 +9,14 @@ export interface useBPMNOptions extends BaseViewerOptions {
   xmlContent?: string
   onImportXmlError?: (err: ImportXMLError) => void
   onImportXmlSuccess?: (warnings: string[]) => void
-  onSuccess: ((modeler: Modeler) => void)[]
+  onSuccess: ((modeler: Modeler, canvas: Canvas) => void)[]
 }
 
 export const useBPMN = (options: useBPMNOptions) => {
   const modelerClazz = options.modeler ?? Modeler
   const modeler = of<Modeler, typeof Modeler>(modelerClazz, options)
   const { getData } = options
+  const canvas = modeler.get<Canvas>('canvas')
   let done = false
   if (getData) {
     getData()
@@ -24,7 +25,7 @@ export const useBPMN = (options: useBPMNOptions) => {
       })
       .then((res) => {
         options.onImportXmlSuccess?.(res.warnings)
-        options.onSuccess.forEach((f) => f(modeler))
+        options.onSuccess.forEach((f) => f(modeler, canvas))
       })
       .catch((e) => {
         const err = e as ImportXMLError
@@ -38,7 +39,7 @@ export const useBPMN = (options: useBPMNOptions) => {
       .importXML(options.xmlContent ?? '')
       .then((res) => {
         options.onImportXmlSuccess?.(res.warnings)
-        options.onSuccess.forEach((f) => f(modeler))
+        options.onSuccess.forEach((f) => f(modeler, canvas))
         done = true
       })
       .catch((e) => {
@@ -49,7 +50,5 @@ export const useBPMN = (options: useBPMNOptions) => {
         done = true
       })
   }
-  const canvas = modeler.get<Canvas>('canvas')
-  canvas.zoom('fit-viewport')
   return { modeler, canvas, done }
 }
