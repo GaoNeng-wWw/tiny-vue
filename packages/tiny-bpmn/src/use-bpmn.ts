@@ -17,22 +17,9 @@ export const useBPMN = (options: useBPMNOptions) => {
   const modeler = of<Modeler, typeof Modeler>(modelerClazz, options)
   const { getData } = options
   const canvas = modeler.get<Canvas>('canvas')
-  if (getData) {
-    getData()
-      .then((content) => {
-        return modeler.importXML(content)
-      })
-      .then((res) => {
-        options.onImportXmlSuccess?.(res.warnings)
-        options.onSuccess.forEach((f) => f(modeler, canvas))
-      })
-      .catch((e) => {
-        const err = e as ImportXMLError
-        options.onImportXmlError?.(err)
-      })
-  } else {
+  const importXML = (content: string) => {
     modeler
-      .importXML(options.xmlContent ?? '')
+      .importXML(content ?? '')
       .then((res) => {
         options.onImportXmlSuccess?.(res.warnings)
         options.onSuccess.forEach((f) => f(modeler, canvas))
@@ -41,10 +28,17 @@ export const useBPMN = (options: useBPMNOptions) => {
         const err = e as ImportXMLError
         options.onImportXmlError?.(err)
       })
+  }
+  if (getData) {
+    getData().then((content) => {
+      return importXML(content)
+    })
+  } else {
+    importXML(options.xmlContent ?? '')
   }
   const eventBus = modeler.get<EventBus<unknown>>('eventBus')
   const on = (name: string, f: (e: any) => void) => {
     modeler.on(name, f)
   }
-  return { modeler, canvas, on, eventBus }
+  return { modeler, canvas, on, eventBus, importXML }
 }

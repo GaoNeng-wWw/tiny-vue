@@ -10,6 +10,7 @@ export interface ProcessDesignerProps {
   getData: () => Promise<string>
   additionModules?: any[]
   modeler?: Modeler
+  data?: string
 }
 
 export const processDesignerProps = {
@@ -28,6 +29,10 @@ export const processDesignerProps = {
   modeler: {
     type: Object as PropType<Modeler>,
     require: false
+  },
+  data: {
+    type: String,
+    requrie: false
   }
 }
 

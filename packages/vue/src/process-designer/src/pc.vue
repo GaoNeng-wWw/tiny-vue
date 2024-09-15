@@ -10,7 +10,7 @@ import '@bpmn-io/properties-panel/assets/properties-panel.css'
 
 export default defineComponent({
   emits: ['importXmlError', 'importXmlSuccess', 'success', 'mounted'],
-  props: [...props, 'getData', 'additionalModules', 'modeler'],
+  props: [...props, 'getData', 'additionalModules', 'modeler', 'data'],
   setup(props, context) {
     return setup({
       props,
