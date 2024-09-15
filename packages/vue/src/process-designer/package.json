@@ -15,9 +15,13 @@
     "vitest": "^0.31.0"
   },
   "dependencies": {
+    "@bpmn-io/properties-panel": "^3.23.0",
     "@opentiny/tiny-bpmn": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:^",
+    "bpmn-js": "^17.11.0",
+    "bpmn-js-properties-panel": "^5.23.2"
   },
   "license": "MIT"
 }

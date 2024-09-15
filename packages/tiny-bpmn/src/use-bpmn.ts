@@ -1,4 +1,4 @@
-import type { BaseViewerOptions, ImportXMLError } from 'bpmn-js/lib/BaseViewer'
+import type { BaseViewerOptions, EventBus, ImportXMLError } from 'bpmn-js/lib/BaseViewer'
 import Modeler from 'bpmn-js/lib/Modeler'
 import { of } from './utils'
 import type Canvas from 'diagram-js/lib/core/Canvas'
@@ -31,24 +31,21 @@ export const useBPMN = (options: useBPMNOptions) => {
         const err = e as ImportXMLError
         options.onImportXmlError?.(err)
       })
-      .finally(() => {
-        done = true
-      })
   } else {
     modeler
       .importXML(options.xmlContent ?? '')
       .then((res) => {
         options.onImportXmlSuccess?.(res.warnings)
         options.onSuccess.forEach((f) => f(modeler, canvas))
-        done = true
       })
       .catch((e) => {
         const err = e as ImportXMLError
         options.onImportXmlError?.(err)
       })
-      .finally(() => {
-        done = true
-      })
   }
-  return { modeler, canvas, done }
+  const eventBus = modeler.get<EventBus<unknown>>('eventBus')
+  const on = (name: string, f: (e: any) => void) => {
+    modeler.on(name, f)
+  }
+  return { modeler, canvas, on, eventBus }
 }

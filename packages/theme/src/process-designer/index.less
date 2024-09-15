@@ -1,0 +1,23 @@
+@import '../custom.less';
+@import './var.less';
+
+@process-designer-prefix-cls: ~'@{css-prefix}process-designer';
+
+.@{process-designer-prefix-cls} {
+    .component-css-vars-process-designer();
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    #render {
+        height: 100%;
+    }
+
+    #properties {
+        position: absolute;
+        right: 16px;
+        width: 300px;
+        top: 0;
+        z-index: var(--ti-process-designer--zindex);
+    }
+}
