@@ -25,6 +25,18 @@ export default {
         'en-US': ''
       },
       codeFiles: ['getter.vue']
+    },
+    {
+      demoId: 'custom',
+      name: {
+        'zh-CN': '自定义',
+        'en-US': 'custom'
+      },
+      desc: {
+        'zh-CN': '通过传入Modeler类, 从而实现自定义效果',
+        'en-US': 'By passing in the Modeler class, custom effects can be achieved'
+      },
+      codeFiles: ['custom-modeler.vue']
     }
   ]
 }

@@ -27,7 +27,8 @@ export const renderless = (
       propertiesPanel: {
         parent: '#properties'
       },
-      additionalModules: [extend.BpmnPropertiesPanelModule, extend.BpmnPropertiesProviderModule]
+      additionalModules: [extend.BpmnPropertiesPanelModule, extend.BpmnPropertiesProviderModule],
+      modeler: props.modeler
     })
     if (props.data) {
       ctx.watch(
