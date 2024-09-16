@@ -1,5 +1,6 @@
 import type { ISharedRenderlessParamUtils, ISharedRenderlessParamHooks, IProcessDesignerExpose } from '@/types'
 import type { IProcessDesignerProps } from '@/types'
+import { onImportFail, onImportSuccess } from '.'
 
 export const api = ['render', 'properties']
 export const renderless = (
@@ -32,7 +33,9 @@ export const renderless = (
         extend.BpmnPropertiesProviderModule,
         ...(props.additionalModules ?? [])
       ],
-      modeler: props.modeler
+      modeler: props.modeler,
+      onImportXmlSuccess: (warnings: string[]) => onImportSuccess(utils.emit, warnings),
+      onImportXmlError: (err) => onImportFail(utils.emit, err)
     })
     if (props.data) {
       ctx.watch(

@@ -49,6 +49,19 @@ export default {
         'en-US': ''
       },
       codeFiles: ['additional-modules.vue']
+    },
+    {
+      demoId: 'events',
+      name: {
+        'zh-CN': '事件响应',
+        'en-US': 'Events'
+      },
+      desc: {
+        'zh-CN':
+          '通过设置<code>import-xml-success</code>和<code>import-xml-error</code>来监听xml导入是否成功。如果失败则会触发<code>import-xml-error</code>',
+        'en-US': ''
+      },
+      codeFiles: ['event.vue']
     }
   ]
 }

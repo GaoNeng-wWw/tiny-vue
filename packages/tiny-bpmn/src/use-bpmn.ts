@@ -9,7 +9,6 @@ export interface useBPMNOptions extends BaseViewerOptions {
   xmlContent?: string
   onImportXmlError?: (err: ImportXMLError) => void
   onImportXmlSuccess?: (warnings: string[]) => void
-  onSuccess: ((modeler: Modeler, canvas: Canvas) => void)[]
 }
 
 export const useBPMN = (options: useBPMNOptions) => {
@@ -18,11 +17,13 @@ export const useBPMN = (options: useBPMNOptions) => {
   const { getData } = options
   const canvas = modeler.get<Canvas>('canvas')
   const importXML = (content: string) => {
+    if (!content) {
+      return
+    }
     modeler
       .importXML(content ?? '')
       .then((res) => {
         options.onImportXmlSuccess?.(res.warnings)
-        options.onSuccess.forEach((f) => f(modeler, canvas))
       })
       .catch((e) => {
         const err = e as ImportXMLError
