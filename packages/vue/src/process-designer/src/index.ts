@@ -8,7 +8,7 @@ const $constants = {}
 
 export interface ProcessDesignerProps {
   getData: () => Promise<string>
-  additionModules?: any[]
+  additionalModules?: any[]
   modeler?: Modeler
   data?: string
 }
@@ -22,7 +22,7 @@ export const processDesignerProps = {
     type: Function as PropType<() => Promise<string>>,
     required: true
   },
-  additionModules: {
+  additionalModules: {
     type: Array as PropType<any[]>,
     requrie: false
   },
@@ -33,6 +33,10 @@ export const processDesignerProps = {
   data: {
     type: String,
     requrie: false
+  },
+  modules: {
+    type: Array,
+    require: false
   }
 }
 

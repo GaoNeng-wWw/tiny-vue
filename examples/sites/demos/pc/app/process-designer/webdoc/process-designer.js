@@ -37,6 +37,18 @@ export default {
         'en-US': 'By passing in the Modeler class, custom effects can be achieved'
       },
       codeFiles: ['custom-modeler.vue']
+    },
+    {
+      demoId: 'additional-modules',
+      name: {
+        'zh-CN': '追加模块',
+        'en-US': 'additional modules'
+      },
+      desc: {
+        'zh-CN': '通过设置<code>additional-modules</code>属性来配置追加模块, 本示例追加了小地图模块',
+        'en-US': ''
+      },
+      codeFiles: ['additional-modules.vue']
     }
   ]
 }
