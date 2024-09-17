@@ -62,6 +62,18 @@ export default {
         'en-US': ''
       },
       codeFiles: ['event.vue']
+    },
+    {
+      demoId: 'showProperties',
+      name: {
+        'zh-CN': '侧边栏展示',
+        'en-US': 'properties panel'
+      },
+      desc: {
+        'zh-CN': '通过设置<code>show-properties</code>来控制侧边栏是否展示',
+        'en-US': ''
+      },
+      codeFiles: ['show-properties.vue']
     }
   ]
 }

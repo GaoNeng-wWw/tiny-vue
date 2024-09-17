@@ -7,10 +7,11 @@ import type { Modeler } from '@opentiny/tiny-bpmn'
 const $constants = {}
 
 export interface ProcessDesignerProps {
-  getData: () => Promise<string>
+  getData?: () => Promise<string>
   additionalModules?: any[]
   modeler?: Modeler
   data?: string
+  showProperties?: boolean
 }
 
 export const processDesignerProps = {
@@ -37,6 +38,11 @@ export const processDesignerProps = {
   modules: {
     type: Array,
     require: false
+  },
+  showProperties: {
+    type: Boolean,
+    require: false,
+    default: false
   }
 }
 

@@ -1,8 +1,13 @@
-import type { ISharedRenderlessParamUtils, ISharedRenderlessParamHooks, IProcessDesignerExpose } from '@/types'
+import type {
+  ISharedRenderlessParamUtils,
+  ISharedRenderlessParamHooks,
+  IProcessDesignerExpose,
+  IProcessDesignerState
+} from '@/types'
 import type { IProcessDesignerProps } from '@/types'
 import { onImportFail, onImportSuccess } from '.'
 
-export const api = ['render', 'properties']
+export const api = ['render', 'properties', 'state']
 export const renderless = (
   props: IProcessDesignerProps,
   ctx: ISharedRenderlessParamHooks,
@@ -17,11 +22,21 @@ export const renderless = (
     on: null,
     canvas: null
   })
+  const state = ctx.reactive<IProcessDesignerState>({
+    showProperties: props.showProperties
+  })
   const api = {
     render,
     properties,
-    expose
+    expose,
+    state
   }
+  ctx.watch(
+    () => props.showProperties,
+    () => {
+      state.showProperties = props.showProperties
+    }
+  )
   ctx.nextTick(() => {
     const { canvas, modeler, eventBus, on, importXML } = extend.useBPMN({
       container: render.value,
@@ -54,6 +69,18 @@ export const renderless = (
         })
         .catch(() => {})
     }
+    const propertiesPanel = modeler.get('propertiesPanel')
+    ctx.watch(
+      () => state.showProperties,
+      (show) => {
+        if (show) {
+          propertiesPanel.attachTo('#properties')
+        } else {
+          propertiesPanel.detach()
+        }
+      },
+      { immediate: true }
+    )
     expose.modeler = modeler
     expose.on = on
     expose.eventBus = eventBus

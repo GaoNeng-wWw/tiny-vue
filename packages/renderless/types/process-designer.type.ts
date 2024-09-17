@@ -9,3 +9,6 @@ export interface IProcessDesignerExpose {
   on: On | null
   canvas: Object | null
 }
+export interface IProcessDesignerState {
+  showProperties: boolean
+}
