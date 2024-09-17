@@ -17,9 +17,6 @@ export const useBPMN = (options: useBPMNOptions) => {
   const { getData } = options
   const canvas = modeler.get<Canvas>('canvas')
   const importXML = (content: string) => {
-    if (!content) {
-      return
-    }
     modeler
       .importXML(content ?? '')
       .then((res) => {

@@ -35,15 +35,15 @@ export const renderless = (
       ],
       modeler: props.modeler,
       onImportXmlSuccess: (warnings: string[]) => onImportSuccess(utils.emit, warnings),
-      onImportXmlError: (err) => onImportFail(utils.emit, err)
+      onImportXmlError: (err) => onImportFail(utils.emit, err),
+      xmlContent: props.data
     })
     if (props.data) {
       ctx.watch(
         () => props.data,
         () => {
           importXML(props.data)
-        },
-        { immediate: true }
+        }
       )
     }
     if (props.getData) {
