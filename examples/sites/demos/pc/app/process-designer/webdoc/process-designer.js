@@ -90,6 +90,18 @@ export default {
           '<code>@opentiny/tiny-bpmn</code> provide <code>languagePackge</code>, Sinicized<code>bpmn</code> and <code>propertiesPanel</code>'
       },
       codeFiles: ['i18n.vue']
+    },
+    {
+      demoId: 'export-xml',
+      name: {
+        'zh-CN': '导出XML',
+        'en-US': 'export xml'
+      },
+      desc: {
+        'zh-CN': '配合<code>mounted</code>事件获取<code>modeler</code>来获取xml',
+        'en-US': 'Cooperate with<code>mounted</code>event to obtain<code>modeler</code>to obtain XML'
+      },
+      codeFiles: ['export-xml.vue']
     }
   ]
 }
