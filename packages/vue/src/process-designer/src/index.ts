@@ -43,6 +43,10 @@ export const processDesignerProps = {
     type: Boolean,
     require: false,
     default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: false
   }
 }
 

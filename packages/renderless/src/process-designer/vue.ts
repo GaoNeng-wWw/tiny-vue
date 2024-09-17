@@ -51,7 +51,8 @@ export const renderless = (
       modeler: props.modeler,
       onImportXmlSuccess: (warnings: string[]) => onImportSuccess(utils.emit, warnings),
       onImportXmlError: (err) => onImportFail(utils.emit, err),
-      xmlContent: props.data
+      xmlContent: props.data,
+      readonly: props.readonly
     })
     if (props.data) {
       ctx.watch(
@@ -69,10 +70,13 @@ export const renderless = (
         })
         .catch(() => {})
     }
-    const propertiesPanel = modeler.get('propertiesPanel')
+    const propertiesPanel = !props.readonly ? modeler.get('propertiesPanel') : undefined
     ctx.watch(
       () => state.showProperties,
       (show) => {
+        if (props.readonly) {
+          return
+        }
         if (show) {
           propertiesPanel.attachTo('#properties')
         } else {

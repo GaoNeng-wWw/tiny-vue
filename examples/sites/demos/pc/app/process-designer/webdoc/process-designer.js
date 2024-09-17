@@ -102,6 +102,18 @@ export default {
         'en-US': 'Cooperate with<code>mounted</code>event to obtain<code>modeler</code>to obtain XML'
       },
       codeFiles: ['export-xml.vue']
+    },
+    {
+      demoId: 'readonly',
+      name: {
+        'zh-CN': '只读',
+        'en-US': 'readonly'
+      },
+      desc: {
+        'zh-CN': '使用<code>readonly</code>选项来配置该编辑器是否只读',
+        'en-US': 'Use the<code>read-only</code>option to configure whether the editor is read-only'
+      },
+      codeFiles: ['readonly.vue']
     }
   ]
 }
