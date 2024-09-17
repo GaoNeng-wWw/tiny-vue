@@ -9,7 +9,7 @@ import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 import '@bpmn-io/properties-panel/assets/properties-panel.css'
 
 export default defineComponent({
-  emits: ['importXmlError', 'importXmlSuccess', 'success', 'mounted'],
+  emits: ['importXmlError', 'importXmlSuccess', 'mounted'],
   props: [...props, 'getData', 'additionalModules', 'modeler', 'data', 'modules'],
   setup(props, context) {
     return setup({
