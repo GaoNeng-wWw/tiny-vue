@@ -3,4 +3,3 @@ packages:
   - examples/*
   - internals/*
   - solid-demo/*
-  - packages/tiny-bpmn

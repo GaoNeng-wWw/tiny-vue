@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "^3.23.0",
-    "@opentiny/tiny-bpmn": "workspace:~",
+    "@opentiny/tiny-bpmn": "workspace:^",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:^",
