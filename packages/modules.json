@@ -2105,18 +2105,18 @@
       "pc"
     ]
   },
-  "ProcessDesignerPc": {
-    "path": "vue/src/process-designer/src/pc.vue",
-    "type": "template",
-    "exclude": false
-  },
   "ProcessDesigner": {
-    "path": "vue/src/process-designer/src/index.ts",
+    "path": "vue/src/process-designer/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
       "pc"
     ]
+  },
+  "ProcessDesignerPc": {
+    "path": "vue/src/process-designer/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "Progress": {
     "path": "vue/src/progress/index.ts",
