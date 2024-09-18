@@ -24,11 +24,11 @@
       "@opentiny/vue-renderless*": [
         "packages/renderless/src*"
       ],
-      "@opentiny/tiny-bpmn*": [
-        "packages/tiny-bpmn/src*"
+      "@opentiny/tiny-bpmn/*": [
+        "packages/tiny-bpmn/src/*"
       ],
       "@opentiny/tiny-bpmn": [
-        "packages/tiny-bpmn/src/index.ts"
+        "./packages/tiny-bpmn/src/"
       ],
       "virtual:common/adapter/vue": [
         "packages/vue-common/src/adapter/vue3/index.ts"
