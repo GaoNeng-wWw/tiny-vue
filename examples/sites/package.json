@@ -21,6 +21,7 @@
     "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
+    "@bpmn-io/properties-panel": "^3.23.0",
     "@opentiny/tiny-bpmn": "workspace:^",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
