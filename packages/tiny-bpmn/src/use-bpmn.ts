@@ -3,6 +3,7 @@ import type { BaseViewerOptions, EventBus, ImportXMLError } from 'bpmn-js/lib/Ba
 import Modeler from 'bpmn-js/lib/Modeler'
 import { of } from './utils'
 import type Canvas from 'diagram-js/lib/core/Canvas'
+import { useEmptyDigram } from './empty-digram'
 
 export interface useBPMNOptions extends BaseViewerOptions {
   modeler?: typeof Modeler
@@ -37,7 +38,7 @@ export const useBPMN = (options: useBPMNOptions) => {
       return importXML(content)
     })
   } else {
-    importXML(options.xmlContent ?? '')
+    importXML(options.xmlContent ?? useEmptyDigram())
   }
   const eventBus = modeler.get<EventBus<unknown>>('eventBus')
   const on = (name: string, f: (e: any) => void) => {
