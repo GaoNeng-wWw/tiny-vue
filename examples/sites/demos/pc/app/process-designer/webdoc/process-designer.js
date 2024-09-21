@@ -33,7 +33,8 @@ export default {
         'en-US': 'custom'
       },
       desc: {
-        'zh-CN': '通过传入Modeler类, 从而实现自定义效果',
+        'zh-CN':
+          '通过传入Modeler类, 从而实现自定义效果. Modeler示例请访问 <a href="https://gitlink.org.cn/opentiny/tiny-vue/tree/2c0b086607/examples/sites/demos/pc/app/process-designer/modeler/custom">custom-modeler</a>',
         'en-US': 'By passing in the Modeler class, custom effects can be achieved'
       },
       codeFiles: ['custom-modeler.vue']
