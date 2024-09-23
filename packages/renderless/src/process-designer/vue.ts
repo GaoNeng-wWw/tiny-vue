@@ -31,10 +31,11 @@ export const renderless = (
     expose,
     state
   }
+  let keyboardService = null
   ctx.watch(
     () => props.showProperties,
     () => {
-      state.showProperties = props.showProperties
+      state.showProperties = props.showProperties ?? false
     }
   )
   ctx.nextTick(() => {
@@ -70,6 +71,22 @@ export const renderless = (
         })
         .catch(() => {})
     }
+    ctx.watch(
+      () => props.keyboard,
+      () => {
+        if (!keyboardService) {
+          keyboardService = modeler.get('keyboard')
+        }
+        if (!props.keyboard) {
+          keyboardService.unbind()
+          return
+        }
+        if (document) {
+          keyboardService.bind(document)
+        }
+      },
+      { immediate: true }
+    )
     const propertiesPanel = !props.readonly ? modeler.get('propertiesPanel') : undefined
     ctx.watch(
       () => state.showProperties,

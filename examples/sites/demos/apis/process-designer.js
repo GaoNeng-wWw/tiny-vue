@@ -63,6 +63,15 @@ export default {
             'en-US': 'Readonly or not'
           },
           pcDemo: 'readonly'
+        },
+        {
+          name: 'keyboard',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '是否启用快捷键',
+            'en-US': 'Enable keyboard or not'
+          }
         }
       ],
       events: [

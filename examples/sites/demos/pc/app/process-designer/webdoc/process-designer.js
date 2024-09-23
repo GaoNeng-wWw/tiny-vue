@@ -115,6 +115,19 @@ export default {
         'en-US': 'Use the<code>read-only</code>option to configure whether the editor is read-only'
       },
       codeFiles: ['readonly.vue']
+    },
+    {
+      demoId: 'keyboard',
+      name: {
+        'zh-CN': '快捷键',
+        'en-US': 'keyboard'
+      },
+      desc: {
+        'zh-CN': '您可以使用<code>keyboard</code>属性来显式的指定快捷键是否开启',
+        'en-US':
+          'You can use the<code>keyboard</code>property to explicitly specify whether shortcut keys are enabled or not'
+      },
+      codeFiles: ['keyboard.vue']
     }
   ]
 }

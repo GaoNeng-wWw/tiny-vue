@@ -5,7 +5,17 @@ import { useBPMN, BpmnPropertiesPanelModule, BpmnPropertiesProviderModule } from
 
 export default defineComponent({
   emits: ['importXmlError', 'importXmlSuccess', 'mounted'],
-  props: [...props, 'getData', 'additionalModules', 'modeler', 'data', 'modules', 'showProperties', 'readonly'],
+  props: [
+    ...props,
+    'getData',
+    'additionalModules',
+    'modeler',
+    'data',
+    'modules',
+    'showProperties',
+    'readonly',
+    'keyboard'
+  ],
   setup(props, context) {
     return setup({
       props,

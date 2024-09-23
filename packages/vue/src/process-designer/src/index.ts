@@ -11,7 +11,9 @@ export interface ProcessDesignerProps {
   additionalModules?: any[]
   modeler?: Modeler
   data?: string
-  showProperties?: boolean
+  showProperties: boolean
+  readonly: boolean
+  keyboard: boolean
 }
 
 export const processDesignerProps = {
@@ -47,6 +49,10 @@ export const processDesignerProps = {
   readonly: {
     type: Boolean,
     default: false
+  },
+  keyboard: {
+    type: Boolean,
+    default: true
   }
 }
 
