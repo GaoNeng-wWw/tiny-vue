@@ -84,7 +84,11 @@
                         :title="i18nByKey('defValue')"
                         :width="columnWidth[key][2]"
                       ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                        <template #default="data">
+                          <span v-html="data.row.desc"></span>
+                        </template>
+                      </tiny-grid-column>
                     </tiny-grid>
                   </template>
                 </div>
@@ -202,7 +206,11 @@
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
                           ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                            <template #default="data">
+                              <span v-html="data.row.desc"></span>
+                            </template>
+                          </tiny-grid-column>
                         </tiny-grid>
                       </template>
                     </div>
@@ -451,7 +459,7 @@ export default defineComponent({
             })
           }
         }
-      }, 600)
+      }, 0)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -557,7 +565,12 @@ export default defineComponent({
           }
 
           // F5刷新加载时，跳到当前示例
-          scrollByHash(hash)
+          // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
+          setTimeout(() => {
+            nextTick(() => {
+              scrollByHash(hash)
+            })
+          }, 0)
         })
         .finally(() => {
           // 获取组件贡献者
@@ -644,12 +657,14 @@ export default defineComponent({
 
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
+          e.preventDefault()
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
 
-          e.preventDefault()
+          router.push(data.link)
+          scrollByHash(hash)
         }
       }
     }
@@ -764,10 +779,10 @@ export default defineComponent({
   }
 
   .docs-content-tabs {
-    --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: 18px;
-    --ti-tabs-header-font-active-text-color: #2f5bea;
-    --ti-tabs-item-active-border-color: #2f5bea;
+    --tv-Tabs-heigh: 48px;
+    --tv-Tabs-item-font-size: 18px;
+    --tv-Tabs-header-font-active-text-color: #2f5bea;
+    --tv-Tabs-item-active-border-color: #2f5bea;
 
     flex: 1;
     transition: all ease-in-out 0.3s;
@@ -806,9 +821,6 @@ export default defineComponent({
 }
 
 .api-table {
-  --ti-grid-font-size: 14px;
-  --ti-grid-default-header-column-height: 40px;
-
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -836,6 +848,15 @@ export default defineComponent({
 
   :deep(.tiny-grid-body__expanded-cell) {
     background-color: #fafafa;
+  }
+
+  :deep(code) {
+    color: #476582;
+    padding: 4px 8px;
+    margin: 0 4px;
+    font-size: 0.85em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
   }
 }
 
@@ -923,7 +944,6 @@ export default defineComponent({
   }
 
   :deep(.tiny-anchor-link) {
-    margin-bottom: 10px;
     font-size: 12px;
 
     a {

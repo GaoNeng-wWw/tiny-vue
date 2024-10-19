@@ -5,24 +5,37 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@opentiny/vue-autonavi-map": [
-        "packages/vue/src/chart/autonavi-map"
+      "@opentiny/vue-huicharts-amap": [
+        
+        "packages/vue/src/huicharts/huicharts-amap"
+      
       ],
-      "@opentiny/vue-baidu-map": [
-        "packages/vue/src/chart/baidu-map"
+      "@opentiny/vue-huicharts-bmap": [
+        
+        "packages/vue/src/huicharts/huicharts-bmap"
+      
       ],
-      "@opentiny/vue-chart-*": [
-        "packages/vue/src/chart/chart-*"
+      "@opentiny/vue-huicharts-*": [
+        
+        "packages/vue/src/huicharts/chart-*"
+      
       ],
       "@opentiny/vue-*": [
+        
         "packages/vue-*",
+       
         "packages/vue/src/*"
+      
       ],
       "@opentiny/vue-renderless/types*": [
+        
         "packages/renderless/types*"
+      
       ],
       "@opentiny/vue-renderless*": [
+        
         "packages/renderless/src*"
+      
       ],
       "@opentiny/tiny-bpmn/*": [
         "packages/tiny-bpmn/src/*"
@@ -31,15 +44,22 @@
         "./packages/tiny-bpmn/src/"
       ],
       "virtual:common/adapter/vue": [
+        
         "packages/vue-common/src/adapter/vue3/index.ts"
+      
       ],
       "virtual:locale/vue": [
+        
         "packages/vue-locale/src/vue3/index.ts"
+      
       ]
     },
     "types": [
+      
       "node",
+     
       "vite/client"
+    
     ]
   },
   "vueCompilerOptions": {
@@ -53,8 +73,12 @@
     "examples/vue3/shims-vue.d.ts"
   ],
   "exclude": [
+    
     "**/node_modules",
+   
     "**/dist*",
+   
     "**/*.md"
+  
   ]
 }
