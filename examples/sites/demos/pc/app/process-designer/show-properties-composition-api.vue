@@ -8,11 +8,6 @@
 <script setup lang="ts">
 import { ProcessDesigner, Button as TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
-import 'bpmn-js/dist/assets/diagram-js.css'
-import 'bpmn-js/dist/assets/bpmn-js.css'
-
-import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
-import '@bpmn-io/properties-panel/assets/properties-panel.css'
 
 const showProperties = ref(false)
 const data = ref(`
