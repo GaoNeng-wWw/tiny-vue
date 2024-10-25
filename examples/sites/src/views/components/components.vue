@@ -107,6 +107,7 @@
                       :demo="demo"
                       :curr-demo-id="currDemoId"
                       class="mb32"
+                      @mounted="demoMounted"
                     />
                   </div>
                   <div v-else>
@@ -130,7 +131,7 @@
                 </template>
               </div>
             </tiny-tab-item>
-            <tiny-tab-item v-if="showApiTab && !isRunningTest" title="API" name="api">
+            <tiny-tab-item v-if="showApiTab && !isRunningTest && currJson.apis?.length" title="API" name="api">
               <!-- api文档 -->
               <div id="API" class="all-api-container">
                 <div class="ti-f-c ti-f-wrap api-list">
@@ -158,7 +159,11 @@
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
                             <template #default="{ row }">
-                              <async-highlight v-if="row.code" :code="row.code.trim()" types="ts"></async-highlight>
+                              <async-highlight
+                                v-if="row.code"
+                                :code="row.code.trim()"
+                                :types="chartCode ? 'html' : 'ts'"
+                              ></async-highlight>
                               <div v-if="row.depTypes">
                                 <async-highlight
                                   v-for="(k, i) in row.depTypes"
@@ -201,7 +206,7 @@
                             </template>
                           </tiny-grid-column>
                           <tiny-grid-column
-                            v-if="key === 'props'"
+                            v-if="key === 'props' || key === 'options'"
                             field="defaultValue"
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
@@ -224,6 +229,7 @@
         <div class="cmp-page-anchor catalog" v-if="currAnchorLinks.length">
           <tiny-anchor
             id="anchor"
+            :offset-top="156"
             :links="currAnchorLinks"
             :key="anchorRefreshKey"
             :is-affix="anchorAffix"
@@ -248,6 +254,7 @@
 
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
@@ -279,6 +286,8 @@ export default defineComponent({
     const isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'
     const anchorRefreshKey = ref(0)
     const apiTableRef = ref()
+    const route = useRoute()
+
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: getWord('zh-CN', 'en-US'),
@@ -310,12 +319,13 @@ export default defineComponent({
       currAnchorLinks: computed(() => (state.activeTab === 'demos' ? state.demoAnchorLinks : state.apiAnchorLinks)),
       // 单demo显示时
       singleDemo: null,
-      activeTab: 'demos',
+      activeTab: route.hash === '#api' ? 'api' : 'demos',
       tableData: {},
       currApiTypes: [],
       showApiTab: computed(() => state.currApiTypes.length),
       columnWidth: {
         props: ['15%', '20%', '15%'],
+        options: ['15%', '20%', '15%'],
         events: ['15%', '25%', 0],
         methods: ['15%', '20%', 0],
         slots: ['15%', 0, 0],
@@ -329,11 +339,32 @@ export default defineComponent({
         activeMethod: (row) => row.typeAnchorName,
         showIcon: true // 配置是否显示展开图标
       },
-      contributors: [] // 贡献者
+      contributors: [], // 贡献者
+      chartCode: false
     })
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+
+    let finishNum = 0
+    let isAllMounted = false
+    let demoMountedResolve
+    const demoMounted = () => {
+      finishNum++
+      if (finishNum === state.currJson.demos.length) {
+        isAllMounted = true
+        demoMountedResolve(true)
+      }
+    }
+
+    const allDemoMounted = async () => {
+      if (isAllMounted) {
+        return isAllMounted
+      }
+      return new Promise((resolve) => {
+        demoMountedResolve = resolve
+      })
+    }
 
     const getApiAnchorLinks = () => {
       if (!state.currJson.apis?.length) {
@@ -447,10 +478,7 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-          } catch (err) {
-            // eslint-disable-next-line no-console
-            console.log('querySelector has special character:', err)
-          }
+          } catch (err) {}
           if (scrollTarget && !isRunningTest) {
             document.getElementById('doc-layout').scrollTo({
               top: scrollTarget.offsetTop,
@@ -459,7 +487,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -489,6 +517,9 @@ export default defineComponent({
           `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
         )
       ]
+
+      state.chartCode = getWebdocPath(state.cmpId) === 'chart'
+
       // 兼容ts文档
       if (['interfaces', 'types', 'classes'].includes(state.cmpId)) {
         state.activeTab = 'apis'
@@ -566,11 +597,9 @@ export default defineComponent({
 
           // F5刷新加载时，跳到当前示例
           // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          return allDemoMounted().then(() => {
+            scrollByHash(hash)
+          })
         })
         .finally(() => {
           // 获取组件贡献者
@@ -613,10 +642,12 @@ export default defineComponent({
     }
 
     const fn = {
+      demoMounted,
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
-      onTabsClick: () => {
+      onTabsClick: (data) => {
+        router.push(`#${data.name}`)
         scrollToLayoutTop()
       },
       // 点击 api区域的 name列时
@@ -676,6 +707,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 切换组件时tabs激活页变成demos
+          state.activeTab = 'demos'
           // 每次切换组件都需要让锚点组件重新刷新
           anchorRefreshKey.value++
         }

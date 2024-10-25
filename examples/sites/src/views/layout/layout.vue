@@ -15,7 +15,7 @@
           @collapse-change="collapseChange"
         >
           <template #default="{ data }">
-            <div class="node-name-container">
+            <a @click="clickMenuLink" :href="getMenuLink(data)" class="node-name-container">
               <tiny-tag v-if="data?.mode?.includes('mobile-first')" size="mini" effect="plain" class="absolute-tag"
                 >多端</tiny-tag
               >
@@ -35,7 +35,7 @@
                 :is-from-menu="true"
               >
               </version-tip>
-            </div>
+            </a>
           </template>
         </tiny-tree-menu>
       </div>
@@ -124,6 +124,16 @@ export default defineComponent({
       }
     }
 
+    const getMenuLink = (menu) => {
+      if (menu.type === 'overview') {
+        return `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/overview`
+      } else if (menu.type === 'docs') {
+        return getTo('docs/', menu.key)
+      } else if (menu.type === 'components') {
+        return getTo('components/', menu.key)
+      }
+    }
+
     const collapseChange = (isCollapsed) => {
       state.isCollapsed = isCollapsed
     }
@@ -168,6 +178,10 @@ export default defineComponent({
       routerCbDestroy()
     })
 
+    const clickMenuLink = (e) => {
+      e.preventDefault()
+    }
+
     return {
       ...toRefs(state),
       appData,
@@ -179,6 +193,8 @@ export default defineComponent({
       apiModeState,
       apiModeFn,
       templateModeState,
+      getMenuLink,
+      clickMenuLink,
       getWord,
       i18nByKey,
       isThemeSaas
@@ -218,22 +234,19 @@ export default defineComponent({
   }
 }
 
-.tiny-dropdown-item.is-actived {
-  background-color: var(--ti-dropdown-item-hover-bg-color);
-  color: var(--ti-dropdown-item-hover-text-color);
-  border-radius: var(--ti-dropdown-item-border-radius);
-}
-
 .is-collapsed + .main-menu.tiny-tree-menu {
   height: 100%;
 }
 
 .main-menu.tiny-tree-menu {
-  --ti-tree-menu-node-current-text-color: #191919;
-
   height: 100%;
   padding-top: 30px;
   padding-left: 10px;
+  width: 276px;
+
+  &.is-collapsed {
+    width: 0;
+  }
 
   &::before {
     display: none;
@@ -251,20 +264,18 @@ export default defineComponent({
       .tiny-tree-node__content:hover {
         border-radius: 20px;
       }
-
-      &.is-current {
-        > .tiny-tree-node__content .node-name-label {
-          font-weight: 600;
-        }
-
-        .menu-type-icon {
-          fill: #191919;
+      .tiny-tree-node__content {
+        height: 40px;
+        line-height: 40px;
+        &::before {
+          display: none;
         }
       }
     }
 
     .node-float-tip {
       border-radius: 0;
+      margin-right: 8px;
     }
   }
 
@@ -281,11 +292,7 @@ export default defineComponent({
   .tiny-input {
     margin: 0 10px 12px;
     width: auto;
-
-    .tiny-input__inner {
-      width: 100%;
-      border: 1px solid #f0f0f0;
-    }
+    max-width: unset;
   }
 
   .tiny-tree-node__content-box {
@@ -308,6 +315,7 @@ export default defineComponent({
     line-height: 1.5;
 
     .node-name-container {
+      color: #191919;
       display: flex;
       align-items: center;
       flex-wrap: nowrap;

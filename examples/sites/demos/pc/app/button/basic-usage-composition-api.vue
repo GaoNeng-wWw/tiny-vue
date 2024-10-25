@@ -2,7 +2,7 @@
   <tiny-layout>
     <p>基本按钮</p>
     <tiny-row>
-      <tiny-button type="primary" native-type="submit"> 主要按钮 </tiny-button>
+      <tiny-button type="primary"> 主要按钮 </tiny-button>
       <tiny-button> 次要按钮 </tiny-button>
       <tiny-button type="success"> 成功按钮 </tiny-button>
       <tiny-button type="info"> 信息按钮 </tiny-button>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/vue'
+import { TinyButton, TinyLayout, TinyRow } from '@opentiny/vue'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 
 const IconDel = iconDel()
