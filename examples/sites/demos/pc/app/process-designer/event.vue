@@ -76,7 +76,7 @@ export default {
 <template>
   <div>
     <div class="process-designer-demo-wrapper">
-      <process-designer :data="xml" @import-success="onImportSuccess" @import-xml-Error="onImportError" />
+      <process-designer :data="xml" @import-success="onImportSuccess" @import-xml-error="onImportError" />
     </div>
     <tiny-button @click="xml = data"> 加载正常xml </tiny-button>
     <tiny-button @click="xml = errorXml"> 加载异常xml </tiny-button>
