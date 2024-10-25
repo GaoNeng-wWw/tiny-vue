@@ -31,7 +31,7 @@ export const renderless = (
     expose,
     state
   }
-  let keyboardService = null
+  let keyboardService: any = null
   ctx.watch(
     () => props.showProperties,
     () => {
@@ -74,8 +74,15 @@ export const renderless = (
     ctx.watch(
       () => props.keyboard,
       () => {
-        if (!keyboardService) {
+        try {
+          // 有些modeler不会注入keyboard service,比如view
+          // 获取一个不存在的service会抛出错误
           keyboardService = modeler.get('keyboard')
+        } catch {
+          return
+        }
+        if (!keyboardService) {
+          return
         }
         if (!props.keyboard) {
           keyboardService.unbind()
