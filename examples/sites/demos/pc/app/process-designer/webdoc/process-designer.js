@@ -123,7 +123,20 @@ export default {
         'en-US': 'keyboard'
       },
       desc: {
-        'zh-CN': '您可以使用<code>keyboard</code>属性来显式的指定快捷键是否开启',
+        'zh-CN': `您可以使用<code>keyboard</code>属性来显式的指定快捷键是否开启. <br />
+        默认快捷键为: 
+        <ul>
+          <li> <code>ctrl + z</code> 撤销</li>
+          <li> <code>ctrl + y</code> 恢复</li>
+          <li> <code>ctrl + c</code> 复制</li>
+          <li> <code>ctrl + v</code> 粘贴</li>
+          <li> <code>ctrl + +</code> 放大</li>
+          <li> <code>ctrl + -</code> 缩小</li>
+          <li> <code>ctrl + 0</code> 恢复</li>
+          <li> <code>ctrl + del</code> 删除</li>
+          <li> <code>ctrl + 箭头</code> 上下左右移动</li>
+        </ul>
+        `,
         'en-US':
           'You can use the<code>keyboard</code>property to explicitly specify whether shortcut keys are enabled or not'
       },
