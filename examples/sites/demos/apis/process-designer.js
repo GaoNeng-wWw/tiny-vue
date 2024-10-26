@@ -71,7 +71,8 @@ export default {
           desc: {
             'zh-CN': '是否启用快捷键',
             'en-US': 'Enable keyboard or not'
-          }
+          },
+          pcDemo: 'keyboard'
         }
       ],
       events: [
