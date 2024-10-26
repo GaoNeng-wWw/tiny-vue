@@ -91,7 +91,7 @@ export default {
           name: 'import-xml-error',
           type: '(err: {warnings: string[]} & Error)=>void',
           desc: {
-            'zh-CN': '导入xml出错的时候将会触发该事件',
+            'zh-CN': '导入 xml 出错的时候将会触发该事件',
             'en-US': 'This event will be triggered when there is an error importing XML'
           },
           mode: ['pc'],
@@ -101,7 +101,7 @@ export default {
           name: 'import-xml-success',
           type: '(warnings: string) => void',
           desc: {
-            'zh-CN': '导入xml成功时候会触发该事件, 第一个参数为解析时出现的警告信息',
+            'zh-CN': '导入 xml 成功时候会触发该事件, 第一个参数为解析时出现的警告信息',
             'en-US':
               'When importing XML successfully, this event will be triggered, with the first parameter being a warning message that appears during parsing'
           },
@@ -116,13 +116,13 @@ export default {
       name: 'MountedFunction',
       type: 'type',
       code: `
-type MountedFunction = (exposed: IProcessDesignerExpose)=>void;
-type On = (name: string, f: (e: InternalEvent) => void) => void
+type MountedFunction = (exposed: IProcessDesignerExpose) => void;
+type On = (name: string, f: (e: InternalEvent) => void) => void;
 interface IProcessDesignerExpose {
-  modeler: Object | null
-  eventBus: Object | null
-  on: On | null
-  canvas: Object | null
+  modeler: Object | null;
+  eventBus: Object | null;
+  on: On | null;
+  canvas: Object | null;
 }
 `
     }
