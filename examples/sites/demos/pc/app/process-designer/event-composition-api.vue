@@ -36,6 +36,9 @@ const data = ref(`
   `)
 const xml = ref(errorXml.value)
 const onImportSuccess = (warnings: string[]) => {
+  if (!warnings[0]) {
+    return
+  }
   Notify({
     type: 'warning',
     message: warnings[0],
