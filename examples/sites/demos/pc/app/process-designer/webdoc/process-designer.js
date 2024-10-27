@@ -127,7 +127,6 @@ export default {
         默认快捷键为: 
         <ul>
           <li> <code>ctrl + z</code> 撤销</li>
-          <li> <code>ctrl + y</code> 恢复</li>
           <li> <code>ctrl + c</code> 复制</li>
           <li> <code>ctrl + v</code> 粘贴</li>
           <li> <code>ctrl + +</code> 放大</li>
