@@ -42,12 +42,9 @@ export default {
   `)
     const xml = ref(errorXml.value)
     const onImportSuccess = (warnings: string[]) => {
-      if (!warnings[0]) {
-        return
-      }
       Notify({
-        type: 'warning',
-        message: warnings[0],
+        type: 'info',
+        message: '导入成功',
         position: 'top-right',
         duration: 2000
       })
