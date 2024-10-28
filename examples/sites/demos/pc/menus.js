@@ -11,6 +11,7 @@ const docMenusChildren = [
   { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
   { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
   { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
+  { 'title': '在Rsbuild中使用', 'titleEn': 'useWithRsbuild', key: 'use-with-rsbuild' },
   { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
   {
     'title': '后端适配器',
