@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   release-edge:
-    if: github.repository == 'opentiny/tiny-vue' && github.event.issue.pull_request && github.event.comment.body.startsWith('/trigger release-edge') == true
+    if: github.repository == 'opentiny/tiny-vue' || github.repository == 'GaoNeng-wWw/tiny-vue' && github.event.issue.pull_request && github.event.comment.body.startsWith('/trigger release-edge') == true
     concurrency:
       group: release
     permissions:
