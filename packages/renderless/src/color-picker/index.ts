@@ -17,8 +17,7 @@ export const useEvent = (hex, emit, changeVisible) => {
     emit('confirm', val)
     changeVisible(false)
   }
-  const onCancel = (color: IColorSelectPanelRef<string>) => {
-    hex.value = color.value.hex
+  const onCancel = () => {
     changeVisible(false)
     emit('cancel')
   }
