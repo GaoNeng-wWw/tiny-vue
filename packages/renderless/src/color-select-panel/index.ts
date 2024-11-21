@@ -159,8 +159,8 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
     alpha,
     stack,
     predefineStack,
-    enablePredefineColor: computed(() => props.predefine?.length),
-    enableHistory: computed(() => props.history?.length)
+    enablePredefineColor: computed(() => predefineStack.value.length),
+    enableHistory: computed(() => stack.value.length)
   })
   return state
 }
