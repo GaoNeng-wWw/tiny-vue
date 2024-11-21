@@ -12,7 +12,6 @@
         :visible="visible"
         @confirm="onConfirm"
         @cancel="onCancel"
-        :predefine="predefine"
         :format="value"
       />
     </div>
@@ -31,7 +30,7 @@ export default {
   },
   data() {
     return {
-      color: '#66ccff',
+      color: 'rgb(102,204,255)',
       visible: false,
       predefine: new Array(8).fill(0).map(() => this.randomHex()),
       options: [
@@ -63,12 +62,6 @@ export default {
           .toString(16)
           .padEnd(6, '0')
       )
-    },
-    addPredefineColor() {
-      this.predefine.push(this.randomHex())
-    },
-    popPredefineColor() {
-      this.predefine.pop()
     }
   }
 }

@@ -12,7 +12,6 @@
         :visible="visible"
         @confirm="onConfirm"
         @cancel="onCancel"
-        :predefine="predefine"
         :format="value"
       />
     </div>
@@ -20,12 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import { TinySelect, TinyOption } from '@opentiny/vue'
+import { TinySelect, TinyOption, TinyColorSelectPanel, TinyButton } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const color = ref('#66ccff')
+const color = ref('rgb(102,204,255)')
 const visible = ref(false)
-const predefine = ref(new Array(8).fill(0).map(() => this.randomHex()))
 const options = ref([
   { value: 'hex', label: 'Hex' },
   { value: 'rgb', label: 'rgb' },
@@ -43,5 +41,8 @@ const onConfirm = () => {
 }
 const onCancel = () => {
   hidden()
+}
+const changeVisible = () => {
+  visible.value = !visible.value
 }
 </script>
