@@ -25,6 +25,7 @@
         :alpha="alpha"
         :predefine="state.predefineStack"
         :history="state.stack"
+        :format="format"
       />
     </Transition>
   </div>
@@ -39,7 +40,7 @@ import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size'],
+  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size', 'format'],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect

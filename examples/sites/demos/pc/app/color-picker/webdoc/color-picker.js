@@ -105,6 +105,19 @@ export default {
         'en-US': 'Can dynamically switch <code>color</code> attributes to meet various needs.'
       },
       codeFiles: ['dynamic-color-change.vue']
+    },
+    {
+      demoId: 'format',
+      name: {
+        'zh-CN': '颜色类型',
+        'en-US': 'color format'
+      },
+      desc: {
+        'zh-CN':
+          '通过设置 <code>format</code> 属性, 用于设置点击确定后颜色的格式. 目前支持<code>hex</code>, <code>hsl</code>, <code>hsv</code>, <code>rgb</code>',
+        'en-US': ''
+      },
+      codeFiles: ['format.vue']
     }
   ]
 }

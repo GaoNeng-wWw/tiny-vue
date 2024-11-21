@@ -1,6 +1,7 @@
 import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 import type { Ref } from 'vue'
-import { toggleVisible, useEvent } from './index'
+import { updateModelValue, toggleVisible, useEvent } from './index'
+import { Color } from './utils/color'
 
 export const api = ['state', 'changeVisible', 'onConfirm', 'onCancel', 'onHueUpdate', 'onSVUpdate', 'onColorUpdate']
 
@@ -32,14 +33,30 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
     stack,
     predefineStack
   })
-  ctx.watch(props, () => {
-    hex.value = props.modelValue
+  const color = new Color({
+    value: props.modelValue,
+    format: props.format,
+    enableAlpha: props.alpha
   })
-  ctx.watch(hex, () => {
-    emit('update:modelValue', hex.value)
-  })
+  ctx.watch(
+    () => [props.alpha, props.format],
+    () => {
+      color.enableAlpha = props.alpha
+      color.format = props.format || color.format
+      color.onChange()
+      updateModelValue(color.value, emit)
+    }
+  )
+  ctx.watch(
+    () => props.modelValue,
+    () => {
+      if (color.value !== props.modelValue && props.modelValue) {
+        color.fromString(props.modelValue)
+      }
+    }
+  )
   const changeVisible = toggleVisible(isShow)
-  const { onConfirm, onCancel } = useEvent(hex, emit, changeVisible)
+  const { onConfirm, onCancel } = useEvent(state, emit, changeVisible)
   const api = {
     state,
     changeVisible,

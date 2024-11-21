@@ -64,7 +64,7 @@ import CollapseItem from '@opentiny/vue-collapse-item'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine'],
+  props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine', 'format'],
   components: {
     HueSelect,
     AlphaSelect,

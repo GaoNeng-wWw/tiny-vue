@@ -15,7 +15,19 @@ export default defineComponent({
     visible: Boolean,
     alpha: Boolean,
     history: Array,
-    predefine: Array
+    predefine: Array,
+    format: {
+      type: String,
+      default: 'hex',
+      validator(val: string) {
+        // if is hexa, rgba, hsva, hsl will throw warning message
+        // Becuase should use `alpha` prop if want enable alpha
+        if (val[val.length - 1] === 'a') {
+          console.warn('If you want enable alpha, You should set `alpha` prop to true')
+        }
+        return ['hsv', 'hsl', 'rgb', 'hex'].includes(val)
+      }
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })
