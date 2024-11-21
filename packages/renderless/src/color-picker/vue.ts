@@ -50,13 +50,13 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
   ctx.watch(
     () => props.modelValue,
     () => {
-      if (color.value !== props.modelValue && props.modelValue) {
-        color.fromString(props.modelValue)
-      }
+      color.fromString(props.modelValue)
+      const { r, g, b, a } = color.toRgba()
+      state.hex = `rgba(${r}, ${g}, ${b}, ${a})`
     }
   )
   const changeVisible = toggleVisible(isShow)
-  const { onConfirm, onCancel } = useEvent(state, emit, changeVisible)
+  const { onConfirm, onCancel } = useEvent(state, emit, changeVisible, color)
   const api = {
     state,
     changeVisible,

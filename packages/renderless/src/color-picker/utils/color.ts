@@ -340,6 +340,16 @@ export class Color {
       v: this._value
     })
   }
+  toRgba() {
+    return {
+      ...hsv2rgb({
+        h: this._hue,
+        s: this._sat,
+        v: this._value
+      }),
+      a: this._alpha / 100
+    }
+  }
   onChange() {
     const { _hue, _sat, _value, _alpha, format, enableAlpha } = this
     if (!enableAlpha) {

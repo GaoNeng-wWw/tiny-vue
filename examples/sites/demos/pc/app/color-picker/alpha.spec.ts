@@ -9,6 +9,6 @@ test('测试Alpha', async ({ page }) => {
   await page.getByText('用户选择了取消').click()
   await page.locator('.tiny-color-picker__inner').click()
   await page.getByRole('button', { name: '选择' }).click()
-  // format not implment if enable alpha will use rgba
-  await page.getByText('rgba(128, 64, 64, 1)').click()
+  // default is hex
+  await page.getByText('#804040FF').click()
 })

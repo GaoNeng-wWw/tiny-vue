@@ -1,5 +1,5 @@
 import type { IColorSelectPanelRef } from '@/types'
-import { parseHSV } from './utils/hsv-to-rgb'
+import type { Color } from './utils/color'
 
 export const updateModelValue = (val, emit) => {
   emit('update:modelValue', val)
@@ -11,13 +11,9 @@ export const toggleVisible = (isShow: IColorSelectPanelRef<boolean>) => {
   }
 }
 
-export const useEvent = (state, emit, changeVisible) => {
+export const useEvent = (state, emit, changeVisible, color: Color) => {
   const onConfirm = (val) => {
-    state.hex = val
-    if (val.includes('hsv') || val.includes('hsva')) {
-      const { r, g, b } = parseHSV(val)
-      state.hex = `rgb(${r}, ${g}, ${b})`
-    }
+    color.fromString(val)
     updateModelValue(val, emit)
     emit('confirm', val)
     changeVisible(false)
