@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      color: '#66ccff',
+      color: 'rgb(102,204,255)',
       visible: false,
       predefine: new Array(8).fill(0).map(() => this.randomHex()),
       options: [
