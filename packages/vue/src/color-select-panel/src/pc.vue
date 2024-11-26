@@ -3,6 +3,16 @@
     <hue-select :color="state.color" @hue-ready="onHueReady" @sv-ready="onSvReady" />
     <alpha-select v-if="alpha" :color="state.color" @ready="onAlphaReady" />
     <div class="tiny-color-select-panel__tools">
+      <div class="tiny-color-select-panel__tools__format-select" v-if="state.formats.length">
+        <tiny-select v-model="state.currentFormat">
+          <tiny-option
+            v-for="formatValue in state.formats"
+            :key="formatValue"
+            :value="formatValue"
+            :label="formatValue"
+          />
+        </tiny-select>
+      </div>
       <tiny-input v-model="state.input" size="small" />
       <div class="tiny-color-select-panel__tools-btns">
         <tiny-button size="small" @click="onCancel">
@@ -61,6 +71,8 @@ import '@opentiny/vue-theme/color-select-panel/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
+import Select from '@opentiny/vue-select'
+import Option from '@opentiny/vue-option'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
@@ -71,7 +83,9 @@ export default defineComponent({
     TinyButton: Button,
     TinyInput: Input,
     TinyCollapse: Collapse,
-    TinyCollapseItem: CollapseItem
+    TinyCollapseItem: CollapseItem,
+    TinySelect: Select,
+    TinyOption: Option
   },
   directives: directive({ Clickoutside }),
   setup(props, context) {

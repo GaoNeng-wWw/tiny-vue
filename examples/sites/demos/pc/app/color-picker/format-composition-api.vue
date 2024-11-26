@@ -17,12 +17,7 @@ import { ref } from 'vue'
 
 const color = ref('rgb(102,204,255)')
 const visible = ref(false)
-const options = ref([
-  { value: 'hex', label: 'Hex' },
-  { value: 'rgb', label: 'rgb' },
-  { value: 'hsl', label: 'hsl' },
-  { value: 'hsv', label: 'hsv' }
-])
+const options = ref(['hex', 'hsv', 'hsl', 'rgb'])
 const value = ref('rgb')
 
 const hidden = () => {
