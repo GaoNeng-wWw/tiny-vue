@@ -8,6 +8,8 @@ export interface IColorSelectPanelProps {
   predefine: string[]
   format: ('hsl' | 'hsv' | 'hex' | 'rgb')[]
   modelValue: string
+  enableHistory: boolean
+  enablePredefineColor: boolean
 }
 
 export interface IColorSelectPanelAlphProps<C> {

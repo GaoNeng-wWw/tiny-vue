@@ -60,6 +60,9 @@ export const initApi = (
   }
   const onConfirm = () => {
     submitValue()
+    if (!state.enableHistory) {
+      return
+    }
     let index = state.stack.indexOf(state.input)
     if (index === -1) {
       state.stack.push(state.input)
@@ -160,8 +163,8 @@ export const initState = (props: IColorSelectPanelProps, { reactive, ref, comput
     alpha,
     stack,
     predefineStack,
-    enablePredefineColor: computed(() => predefineStack.value?.length),
-    enableHistory: computed(() => stack.value?.length),
+    enablePredefineColor: computed(() => props.enablePredefineColor),
+    enableHistory: computed(() => props.enableHistory),
     currentFormat,
     formats: props.format
   })
@@ -197,11 +200,6 @@ export const initWatch = (
       }
     }
   )
-  /**
-   * @description 预留了一个 format props类型
-   * @description 2024/11/17 尚未实现
-   * @see https://github.com/opentiny/tiny-vue/issues/2514
-   */
   watch(
     () => [state.currentFormat, props.alpha],
     () => {
@@ -243,6 +241,9 @@ export const initWatch = (
   watch(
     () => props.history,
     () => {
+      if (!state.enableHistory) {
+        return
+      }
       state.stack = props.history
     },
     { deep: true }

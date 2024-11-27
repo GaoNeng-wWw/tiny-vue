@@ -16,6 +16,14 @@ export default defineComponent({
     alpha: Boolean,
     history: Array,
     predefine: Array,
+    enableHistory: {
+      type: Boolean,
+      default: false
+    },
+    enablePredefineColor: {
+      type: Boolean,
+      default: false
+    },
     format: {
       type: Array,
       default: () => [],

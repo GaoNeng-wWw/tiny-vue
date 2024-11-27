@@ -31,7 +31,9 @@ export const renderless = (props, ctx: ISharedRenderlessParamHooks, { emit }: IS
     triggerBg: ctx.ref(modelValue.value),
     size,
     stack,
-    predefineStack
+    predefineStack,
+    enablePredefineColor: ctx.computed(() => props.enablePredefineColor),
+    enableHistory: ctx.computed(() => props.enableHistory)
   })
   const color = new Color({
     value: props.modelValue,

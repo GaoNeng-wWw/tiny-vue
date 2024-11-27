@@ -76,7 +76,17 @@ import Option from '@opentiny/vue-option'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'color-update'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine', 'format'],
+  props: [
+    ...props,
+    'modelValue',
+    'visible',
+    'alpha',
+    'history',
+    'predefine',
+    'format',
+    'enableHistory',
+    'enablePredefineColor'
+  ],
   components: {
     HueSelect,
     AlphaSelect,

@@ -29,6 +29,8 @@
         :style="{
           'min-width': '420px'
         }"
+        :enable-history="state.enableHistory"
+        :enable-predefine-color="state.enablePredefineColor"
       />
     </Transition>
   </div>
@@ -43,7 +45,18 @@ import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size', 'format'],
+  props: [
+    ...props,
+    'modelValue',
+    'visible',
+    'alpha',
+    'predefine',
+    'history',
+    'size',
+    'format',
+    'enableHistory',
+    'enablePredefineColor'
+  ],
   components: {
     IconChevronDown: IconChevronDown(),
     ColorSelect: colorSelect

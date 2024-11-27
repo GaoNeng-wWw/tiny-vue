@@ -26,7 +26,10 @@ export default defineComponent({
     format: {
       type: Array,
       default: () => [],
-      validator(val: string) {
+      validator(val: string[]) {
+        if (!val.length) {
+          return true
+        }
         // if is hexa, rgba, hsva, hsl will throw warning message
         // Becuase should use `alpha` prop if want enable alpha
         if (val[val.length - 1] === 'a') {
@@ -34,6 +37,14 @@ export default defineComponent({
         }
         return ['hsv', 'hsl', 'rgb', 'hex'].includes(val)
       }
+    },
+    enableHistory: {
+      type: Boolean,
+      default: false
+    },
+    enablePredefineColor: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
