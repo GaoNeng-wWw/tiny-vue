@@ -24,8 +24,8 @@ export default defineComponent({
       }
     },
     format: {
-      type: String,
-      default: 'hex',
+      type: Array,
+      default: () => [],
       validator(val: string) {
         // if is hexa, rgba, hsva, hsl will throw warning message
         // Becuase should use `alpha` prop if want enable alpha

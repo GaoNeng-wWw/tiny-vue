@@ -60,6 +60,18 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'default-visible'
+        },
+        {
+          name: 'format',
+          type: "('hex'|'rgb'|'hsl'|'hsv')[]",
+          defaultValue: '[]',
+          desc: {
+            'zh-CN': '点击确认后, confirm的事件将会返回对应的format数值. 如果为空数组则表示禁用颜色格式下拉选择',
+            'en-US':
+              'After clicking confirm, the confirm event will return the corresponding format value If it is an empty array, it means that the color format dropdown selection is disabled'
+          },
+          mode: ['pc'],
+          pcDemo: 'format'
         }
       ],
       events: [

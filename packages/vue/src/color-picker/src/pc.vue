@@ -26,6 +26,9 @@
         :predefine="state.predefineStack"
         :history="state.stack"
         :format="format"
+        :style="{
+          'min-width': '420px'
+        }"
       />
     </Transition>
   </div>
