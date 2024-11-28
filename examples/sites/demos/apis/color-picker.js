@@ -47,7 +47,10 @@ export default {
             'en-US': 'enable history or not'
           },
           mode: ['pc'],
-          pcDemo: 'history'
+          pcDemo: 'history',
+          meta: {
+            stable: '3.19.0'
+          }
         },
         {
           name: 'enable-predefine-color',
@@ -58,7 +61,10 @@ export default {
             'en-US': 'enable predefined colors or not'
           },
           mode: ['pc'],
-          pcDemo: 'predefine'
+          pcDemo: 'predefine',
+          meta: {
+            stable: '3.19.0'
+          }
         },
         {
           name: 'size',
@@ -93,7 +99,10 @@ export default {
               'After clicking confirm, the confirm event will return the corresponding format value If it is an empty array, it means that the color format dropdown selection is disabled'
           },
           mode: ['pc'],
-          pcDemo: 'format'
+          pcDemo: 'format',
+          meta: {
+            stable: '3.19.0'
+          }
         }
       ],
       events: [
